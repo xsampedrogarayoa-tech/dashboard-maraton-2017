@@ -269,14 +269,10 @@ def main():
     with st.sidebar:
         st.title("Maratón de Boston 2017")
         st.caption("Programación II · Práctica 2")
-        archivo_subido = st.file_uploader("Sube el archivo original (marathon_results_2017.csv)", type=["csv"])
-
-    if archivo_subido is None:
-        st.info("Por favor, sube el archivo CSV original en la barra lateral para comenzar.")
-        return
 
     with st.spinner("Limpiando y analizando datos..."):
-        df_bruto = pd.read_csv(archivo_subido)
+        # Lee el CSV directamente desde la carpeta del repositorio
+        df_bruto = pd.read_csv("marathon_results_2017.csv")
         df = an.cargar_y_limpiar(df_bruto) 
 
     if not os.path.exists(RUTA_MODELO):
